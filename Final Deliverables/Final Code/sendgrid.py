@@ -1,26 +1,24 @@
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 
+from __future__ import print_function
+import time
+import sib_api_v3_sdk
+from sib_api_v3_sdk.rest import ApiException
+from pprint import pprint
+
+configuration = sib_api_v3_sdk.Configuration()
+configuration.api_key['api-key'] = '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'
+
+api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
+subject = "!Alert Mail On Product Shortage! - Regards' "
+sender = {"name":"IMSR","email":"arunkumarc0610@gmail.com"}
+to = [{"email":"carunkumar19cs@srishakthi.ac.in","name":""}]
 
 def alert(main_msg):
-    mail_from = 'arunkmarc0610@gmail.com'
-    mail_to = 'carunkumar19cs@srishakthi.ac.in'
-    msg = MIMEMultipart()
-    msg['From'] = mail_from
-    msg['To'] = mail_to
-    msg['Subject'] = '!Alert Mail On Product Shortage! - Regards'
-    mail_body = main_msg
-    msg.attach(MIMEText(mail_body))
-
     try:
-        server = smtplib.SMTP_SSL('smtp.sendgrid.net', 465)
-        server.ehlo()
-        server.login('api-key',
-                     'xsmtpsib-5307f275b210ef3e04490e7374d9532de521b684c7803419e2eb655be375a061-I5yCbx3kszc4PLaS')
-        server.sendmail(mail_from, mail_to, msg.as_string())
-        server.close()
+        html_content = "<html><body><h1>"+main_msg+"</h1></body></html>"
+        send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(to=to, html_content=html_content, sender=sender, subject=subject)
+        api_response = api_instance.send_transac_email(send_smtp_email)
+        pprint(api_response)
         print("Mail sent successfully!")
-    except Exception as e:
-        print(e)
-        print("Some Issue, Mail not Sent :(")
+    except ApiException as e:
+        print("Exception when calling SMTPApi->send_transac_email: %s\n" % e)

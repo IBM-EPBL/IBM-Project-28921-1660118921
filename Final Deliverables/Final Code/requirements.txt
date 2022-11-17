@@ -3,3 +3,4 @@ ibm_db
 sendgrid
 wtforms
 passlib
+sib_api_v3_sdk
