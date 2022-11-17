@@ -11,7 +11,8 @@ app = Flask(__name__)
 
 app.secret_key='a'
 
-conn=ibm_db.connect("DATABASE=bludb;HOSTNAME=55fbc997-9266-4331-afd3-888b05e734c0.bs2io90l08kqb1od8lcg.databases.appdomain.cloud;PORT=IBMDB_PORT;SECURITY=SSL;SSLServerCertificate=DigiCertGlobalRootCA.crt;UID=IBMDB_UID;PWD=IBMDB_PWD;",'','')
+
+conn=ibm_db.connect("DATABASE=bludb;HOSTNAME=55fbc997-9266-4331-afd3-888b05e734c0.bs2io90l08kqb1od8lcg.databases.appdomain.cloud;PORT=31929;SECURITY=SSL;SSLServerCertificate=DigiCertGlobalRootCA.crt;UID=bxf26731;PWD=sELjKAJ4rq5osU1p;",'','')
 
 #Index
 @app.route('/')
@@ -632,6 +633,6 @@ def delete_product_movements(id):
     return redirect(url_for('product_movements'))
 
 if __name__ == '__main__':
-    app.secret_key = "secret123"
+    # app.secret_key = "secret123"
     #when the debug mode is on, we do not need to restart the server again and again
     app.run(debug=True)

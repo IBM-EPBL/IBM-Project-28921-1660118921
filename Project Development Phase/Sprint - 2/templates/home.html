@@ -1,11 +1,20 @@
 {% extends 'layout.html' %}
 
-{% block body %}
+{% block body%}
+<style>
+    body {
+      background-image: url('https://softwareauggest-blogimages.s3.ca-central-1.amazonaws.com/blog/wp-content/uploads/2016/02/14191055/9-Top-Retail-Inventory-Management-Software-for-SMEs-in-India-1068x578.png');
+    }
+    </style><br><br>
+<div>
+{% if session.logged_in == NULL %}
 <div class="jumbotron mt-4">
-    <h1 class="display-3">Inventory Management Web Application</h1>
     {% if session.logged_in == NULL %}
-        <a href="/register" class="btn btn-primary btn-lg">Register</a>
-        <a href="/login" class="btn btn-success btn-lg">Login</a>
-    {% endif %}
+        <center><a href="/register" class="btn btn-primary btn-lg">Register</a>
+        <a href="/login" class="btn btn-success btn-lg">Login</a></center>
+   {% endif %}
+ <br>
+   {% endif %}
+</div>
 </div>
 {% endblock %}
